@@ -1,12 +1,12 @@
 ## Ripple
 
-# Make a payment to partner
+# Pay to partner
 /pay/{amount}
 
 # check the balance
 /balance
 
-#ledger
+# payment ledger
 /history
 
 # get a server name
