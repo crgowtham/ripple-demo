@@ -1,4 +1,4 @@
-java -jar target/demo-0.0.1-SNAPSHOT.jar	
+java -jar target/ripple-0.0.1-SNAPSHOT.jar
 
 
 

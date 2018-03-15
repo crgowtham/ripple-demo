@@ -4,6 +4,7 @@ import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Stack;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -12,15 +13,20 @@ import org.junit.runner.RunWith;
 import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 
 import com.trustline.ripple.config.Configuration;
 import com.trustline.ripple.dto.MoneyTransfer;
+import com.trustline.ripple.dto.Payment;
 import com.trustline.ripple.service.TrustlineService;
 import com.trustline.ripple.util.RestClient;
 
@@ -36,10 +42,12 @@ public class TrustLineApplicationTests {
 
 	@Mock
 	private Configuration configuration;
-
+	
 	@BeforeMethod
 	public void initMocks() {
 		MockitoAnnotations.initMocks(this);
+		
+		ReflectionTestUtils.setField(trustlineService, "restClient", restClient);
 	}
 
 	@Test
@@ -55,7 +63,6 @@ public class TrustLineApplicationTests {
 		when(configuration.getMyName()).thenReturn("Alice");
 
 		trustlineService.pay(10.0);
-
 	}
 
 	@Test
@@ -65,7 +72,6 @@ public class TrustLineApplicationTests {
 		when(configuration.getMyName()).thenReturn("Alice");
 
 		trustlineService.deposit(moneyTransfer);
-
 	}
 
 	@Test
@@ -74,7 +80,6 @@ public class TrustLineApplicationTests {
 		Double resp = trustlineService.balance();
 
 		Assert.assertEquals(resp, 0.0);
-
 	}
 
 }
