@@ -45,7 +45,7 @@ public class TrustlineService {
 	
 	private static final Logger log = LoggerFactory.getLogger(TrustlineService.class);
 
-	public String pay(@PathVariable double payment) throws JsonParseException, JsonMappingException, IOException {
+	public String pay(double payment) throws JsonParseException, JsonMappingException, IOException {
 		UUID confirmationNumber = UUID.randomUUID();
 
 		// deposit payment to partner
@@ -78,7 +78,7 @@ public class TrustlineService {
 	/**
 	 * Deposit payment from partner
 	 */
-	public String deposit(@RequestBody MoneyTransfer moneyTransfer) throws JsonParseException, JsonMappingException, IOException {
+	public String deposit(MoneyTransfer moneyTransfer) throws JsonParseException, JsonMappingException, IOException {
 		UUID confirmationNumber = UUID.randomUUID();
 		addPaymentToLedger(moneyTransfer.getPayment(), confirmationNumber.toString(), moneyTransfer.getConfirmationNumber());
 		log.info(configuration.getMyName() + ", you were paid  " + moneyTransfer.getPayment());
