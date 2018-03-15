@@ -44,12 +44,12 @@ public class TrustlineApplication {
 		@Bean
 		public Docket api() {
 			return new Docket(DocumentationType.SWAGGER_2).select()
-					.apis(RequestHandlerSelectors.basePackage("com.ge.dcs.api"))
-					.paths(PathSelectors.ant("/.well-known/est/**")).build().apiInfo(apiInfo());
+					.apis(RequestHandlerSelectors.basePackage("com.trustline.ripple"))
+					.paths(PathSelectors.ant("/**")).build().apiInfo(apiInfo());
 		}
 
 		private ApiInfo apiInfo() {
-			ApiInfo apiInfo = new ApiInfo("DCS API", "Device Certificate Service", "", "", "", "", "");
+			ApiInfo apiInfo = new ApiInfo("TrustLine API", "TrustLine Service", "", "", "", "", "");
 			return apiInfo;
 		}
 }

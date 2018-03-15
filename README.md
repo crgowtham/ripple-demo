@@ -1,5 +1,8 @@
 ## Ripple
 
+# Swagger Doc
+http://localhost:8080/swagger-ui.html
+
 # Pay to partner
 /pay/{amount}
 
