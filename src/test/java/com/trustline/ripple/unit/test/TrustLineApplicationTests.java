@@ -28,7 +28,6 @@ public class TrustLineApplicationTests {
 	@Mock
 	private RestClient restClient;
 
-	//@Autowired
 	private TrustlineService trustlineService = new TrustlineService();
 
 	@Mock
